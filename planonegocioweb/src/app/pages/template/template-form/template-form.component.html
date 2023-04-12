@@ -1,0 +1,60 @@
+<div class="formcss">
+  <app-bread-crumb
+    [items]="[{ text: 'Template', link: '/templates' }, { text: pageTitle }]"
+  ></app-bread-crumb>
+
+  <app-page-header
+    [page-title]="pageTitle"
+    button-text="Voltar"
+    [button-fa]="['fas', 'backward']"
+    button-link="/templates"
+    button-class="btn-primary"
+  ></app-page-header>
+
+  <form [formGroup]="resourceForm" (submit)="submitForm()">
+    <div class="card">
+      <div class="card-header">template - Informações</div>
+
+      <div class="card-body">
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label for="title">Título</label>
+            <input
+              type="text"
+              class="form-control"
+              id="title"
+              formControlName="title"
+            />
+          </div>
+          <app-form-field-error
+            [form-control]="$any(resourceForm).controls.title"
+          ></app-form-field-error>
+        </div>
+        <div class="form-group col-md-12">
+          <app-tutorial-description></app-tutorial-description>
+          <label for="description">Descrição</label>
+          <textarea
+            rows="5"
+            type="text"
+            class="form-control"
+            id="description"
+            formControlName="description"
+          ></textarea>
+        </div>
+        <app-form-field-error
+          [form-control]="$any(resourceForm).controls.description"
+        ></app-form-field-error>
+      </div>
+    </div>
+
+    <div class="button-save">
+      <button
+        [disabled]="submittingForm || resourceForm.invalid"
+        type="submit"
+        class="btn btn-primary btn-lg float-right mt-3"
+      >
+        <fa-icon [icon]="['fas', 'save']"></fa-icon> Salvar
+      </button>
+    </div>
+  </form>
+</div>

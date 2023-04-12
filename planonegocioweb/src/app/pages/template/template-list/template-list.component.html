@@ -1,0 +1,83 @@
+<div class="list">
+  <app-bread-crumb [items]="[{ text: 'Templates' }]"></app-bread-crumb>
+
+  <app-page-header
+    page-title="Templates"
+    button-text="Novo"
+    [button-fa]="['fas', 'plus']"
+    button-link="new"
+    button-class="btn-success"
+  ></app-page-header>
+
+  <div class="card">
+    <div class="card-header">Template - Filtros</div>
+
+    <div class="card-body">
+      <div class="row">
+        <div class="form-group col-md-5">
+          <label for="name">Título</label>
+          <input
+            type="title"
+            class="form-control"
+            id="title"
+            [(ngModel)]="title"
+          />
+        </div>
+        <div class="form-group col-md-5">
+          <label for="description">Descrição</label>
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            [(ngModel)]="description"
+          />
+        </div>
+        <div class="form-group col-md-2 button-search">
+          <button
+            id="search"
+            type="button"
+            class="btn btn-primary btn-sm botoes"
+            (click)="filter()"
+          >
+            <fa-icon [icon]="['fas', 'search']"></fa-icon> Buscar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid tableskindiv">
+    <table class="tableskin">
+      <thead>
+        <tr class="bg-primary text-light">
+          <th class="col-md-4">Título</th>
+          <th class="col-md-4">Descrição</th>
+          <th class="col-md-4 actions">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let topic of resources">
+          <td class="col-md-4">{{ topic.title }}</td>
+          <td class="col-md-4">{{ topic.description }}</td>
+          <td class="col-md-4 actions">
+            <a
+              [routerLink]="[topic.id, 'edit']"
+              class="btn btn-secondary btn-sm botoes"
+              ><fa-icon [icon]="['fas', 'edit']"></fa-icon> Editar</a
+            >
+            <button
+              (click)="deleteResource(topic)"
+              class="btn btn-danger btn-sm botoes"
+            >
+              <fa-icon [icon]="['fas', 'trash']"></fa-icon> Apagar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p-paginator
+      [rows]="size"
+      [totalRecords]="totalElementos"
+      (onPageChange)="paginate($event)"
+    ></p-paginator>
+  </div>
+</div>

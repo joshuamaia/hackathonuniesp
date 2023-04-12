@@ -1,0 +1,73 @@
+<div class="list">
+  <app-bread-crumb [items]="[{ text: 'Tópicos' }]"></app-bread-crumb>
+
+  <app-page-header
+    page-title="Tópicos"
+    button-text="Novo"
+    [button-fa]="['fas', 'plus']"
+    button-link="new"
+    button-class="btn-success"
+  ></app-page-header>
+
+  <div class="card">
+    <div class="card-header">Tópico - Filtros</div>
+
+    <div class="card-body">
+      <div class="row">
+        <div class="form-group col-md-5">
+          <label for="description">Descrição</label>
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            [(ngModel)]="description"
+          />
+        </div>
+        <div class="form-group col-md-2 button-search">
+          <button
+            id="search"
+            type="button"
+            class="btn btn-primary btn-sm botoes"
+            (click)="filter()"
+          >
+            <fa-icon [icon]="['fas', 'search']"></fa-icon> Buscar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid tableskindiv">
+    <table class="tableskin">
+      <thead>
+        <tr class="bg-primary text-light">
+          <th>Descrição</th>
+          <th class="actions">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let topic of resources">
+          <td>{{ topic.description }}</td>
+
+          <td class="actions">
+            <a
+              [routerLink]="[topic.id, 'edit']"
+              class="btn btn-secondary btn-sm botoes"
+              ><fa-icon [icon]="['fas', 'edit']"></fa-icon> Editar</a
+            >
+            <button
+              (click)="deleteResource(topic)"
+              class="btn btn-danger btn-sm botoes"
+            >
+              <fa-icon [icon]="['fas', 'trash']"></fa-icon> Apagar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p-paginator
+      [rows]="size"
+      [totalRecords]="totalElementos"
+      (onPageChange)="paginate($event)"
+    ></p-paginator>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+body {
+  background-color: #e0e5f8 !important;
+}
+
+.formcss {
+  margin: 20px 0px;
+  padding: 20px;
+  min-height: 72vh;
+  box-shadow: 0px 5px 8px 0px rgb(0 0 0 / 15%);
+  position: relative;
+  -webkit-print-color-adjust: exact;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.card {
+  margin: 20px 0 !important;
+  padding: 5px;
+  background-color: white;
+}
+
+.button-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tableskindiv {
+  padding: 20px;
+  box-shadow: 0px 5px 8px 0px rgb(0 0 0 / 15%);
+  border-radius: 8px;
+  background-color: white;
+}
+
+.tableskindiv .actions {
+  text-align: end;
+}
+
+.tableskindiv .actions-header {
+  padding: 10px;
+  background: #fff;
+}
+
+.tableskindiv .button-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tableskindiv .botoes {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.tableskin {
+  width: 100%;
+}
+
+.tableskin thead {
+  background-color: rgba(63, 81, 181, 0.4);
+}
+
+.tableskin th {
+  padding: 10px !important;
+}
+
+.tableskin td {
+  padding: 15px;
+  text-align: left;
+}
+
+.tableskin tbody {
+  background-color: rgba(63, 81, 181, 0.07);
+}
+
+.tableskin tr:nth-child(even) {
+  background-color: rgba(63, 81, 181, 0.15);
+}

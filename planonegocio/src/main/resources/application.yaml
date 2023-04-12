@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/hackathon}
+    username: ${DATABASE_USERNAME:hackathon}
+    password: ${DATABASE_PASSWORD:root}
+  flyway:
+    enabled: true
+  # JPA properties
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+
+openai:
+  api-key: ${OPENAI_KEY}

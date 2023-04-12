@@ -1,0 +1,48 @@
+version: "3"
+
+services:
+  postgres:
+    image: postgres:12
+    container_name: "hackathon"
+    environment:
+      - POSTGRES_DB=hackathon
+      - POSTGRES_USER=hackathon
+      - POSTGRES_PASSWORD=root
+      - TZ=GMT-3
+    volumes:
+      - "./data/postgres:/var/lib/postgres/data"
+    ports:
+      - 5433:5432
+    networks:
+      - hackathon-networks
+
+  hackathon-backend:
+    restart: on-failure:10
+    container_name: hackathon-backend
+    build: "./planonegocio"
+    depends_on:
+      - postgres
+    networks:
+      - hackathon-networks
+    environment:
+      - DATABASE_URL=jdbc:postgresql://postgres:5432/hackathon
+      - DATABASE_USERNAME=hackathon
+      - DATABASE_PASSWORD=root
+    ports:
+      - 8080:8080
+
+  hackathon-frontend:
+    restart: on-failure:3
+    container_name: hackathon-frontend
+    depends_on:
+      - hackathon-backend
+    networks:
+      - hackathon-networks
+    build: "./planonegocioweb"
+    ports:
+      - 4200:4200
+
+    
+networks:
+  hackathon-networks:
+    driver: bridge

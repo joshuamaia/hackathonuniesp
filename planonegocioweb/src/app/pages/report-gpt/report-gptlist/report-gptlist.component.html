@@ -1,0 +1,122 @@
+<div class="list">
+  <app-bread-crumb [items]="[{ text: 'Relatórios GPT' }]"></app-bread-crumb>
+
+  <app-page-header
+    page-title="Relatórios GPT"
+    button-text="Novo"
+    [button-fa]="['fas', 'plus']"
+    button-link="new"
+    button-class="btn-success"
+  ></app-page-header>
+
+  <div class="card">
+    <div class="card-header">Relatórios GPT - Filtros</div>
+
+    <div class="card-body">
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="topicDescription">Descrição do Tópico</label>
+          <input
+            type="text"
+            class="form-control"
+            id="topicDescription"
+            [(ngModel)]="topicDescription"
+          />
+        </div>
+        <div class="form-group col-md-6">
+          <label for="templateTitle">Título do Template</label>
+          <input
+            type="text"
+            class="form-control"
+            id="templateTitle"
+            [(ngModel)]="templateTitle"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="description">Descrição</label>
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            [(ngModel)]="description"
+          />
+        </div>
+        <div class="form-group col-md-2 button-search">
+          <button
+            id="search"
+            type="button"
+            class="btn btn-primary btn-sm botoes"
+            (click)="filter()"
+          >
+            <fa-icon [icon]="['fas', 'search']"></fa-icon> Buscar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid tableskindiv">
+    <table class="tableskin">
+      <thead>
+        <tr class="bg-primary text-light">
+          <th class="col-md-4">Template</th>
+          <th class="col-md-3">Tópico</th>
+          <th class="col-md-5 actions">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let report of resources">
+          <td class="col-md-4">{{ report.template?.title }}</td>
+          <td class="col-md-3">{{ report.topic?.description }}</td>
+          <td class="col-md-5 actions">
+            <button
+              type="button"
+              class="btn btn-primary btn-sm botoes"
+              data-bs-toggle="modal"
+              data-bs-target="#detail"
+              (click)="selectReportGPT(report)"
+            >
+              <fa-icon [icon]="['fas', 'search']"></fa-icon> Detalhe
+            </button>
+            <a
+              [routerLink]="[report.id, 'edit']"
+              class="btn btn-secondary btn-sm botoes"
+              ><fa-icon [icon]="['fas', 'edit']"></fa-icon> Editar</a
+            >
+            <button
+              (click)="deleteResource(report)"
+              class="btn btn-danger btn-sm botoes"
+            >
+              <fa-icon [icon]="['fas', 'trash']"></fa-icon> Apagar
+            </button>
+            <button
+              data-placement="top"
+              title="Exportar para PDF"
+              (click)="downloadReportPdf(report.topic?.id, report.template?.id)"
+              class="btn btn-dark btn-sm botoes"
+            >
+              <fa-icon [icon]="['fas', 'file-pdf']"></fa-icon> .PDF
+            </button>
+            <button
+              data-placement="top"
+              title="Exportar para ODT"
+              (click)="downloadReportOdt(report.topic?.id, report.template?.id)"
+              class="btn btn-info btn-sm botoes"
+            >
+              <fa-icon [icon]="['fas', 'file-word']"></fa-icon> .ODT
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p-paginator
+      [rows]="size"
+      [totalRecords]="totalElementos"
+      (onPageChange)="paginate($event)"
+    ></p-paginator>
+  </div>
+  <app-report-gptdetail
+    [reportGPTSelected]="reportGPTSelected"
+  ></app-report-gptdetail>
+</div>

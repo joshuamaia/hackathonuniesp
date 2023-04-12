@@ -1,0 +1,46 @@
+<div class="formcss">
+  <app-bread-crumb
+    [items]="[{ text: 'Tópicos', link: '/topics' }, { text: pageTitle }]"
+  ></app-bread-crumb>
+
+  <app-page-header
+    [page-title]="pageTitle"
+    button-text="Voltar"
+    [button-fa]="['fas', 'backward']"
+    button-link="/topics"
+    button-class="btn-primary"
+  ></app-page-header>
+
+  <form [formGroup]="resourceForm" (submit)="submitForm()">
+    <div class="card">
+      <div class="card-header">Tópicos - Informações</div>
+
+      <div class="card-body">
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label for="description">Descrição</label>
+            <input
+              type="text"
+              class="form-control"
+              id="description"
+              formControlName="description"
+            />
+          </div>
+          <app-form-field-error
+            [form-control]="$any(resourceForm).controls.description"
+          ></app-form-field-error>
+        </div>
+      </div>
+    </div>
+
+    <div class="button-save">
+      <button
+        [disabled]="submittingForm || resourceForm.invalid"
+        type="submit"
+        class="btn btn-primary btn-lg float-right mt-3"
+      >
+        <fa-icon [icon]="['fas', 'save']"></fa-icon> Salvar
+      </button>
+    </div>
+  </form>
+</div>

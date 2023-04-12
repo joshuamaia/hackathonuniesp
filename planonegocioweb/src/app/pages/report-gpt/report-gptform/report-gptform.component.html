@@ -1,0 +1,90 @@
+<div class="formcss">
+  <app-bread-crumb
+    [items]="[{ text: 'Relatório GPT', link: '/reports' }, { text: pageTitle }]"
+  ></app-bread-crumb>
+
+  <app-page-header
+    [page-title]="pageTitle"
+    button-text="Voltar"
+    [button-fa]="['fas', 'backward']"
+    button-link="/reports"
+    button-class="btn-primary"
+  ></app-page-header>
+
+  <form [formGroup]="resourceForm" (submit)="submitForm()">
+    <div class="card">
+      <div class="card-header">Relatório GPT - Informações</div>
+      <div class="row">
+        <div class="col-md-5">
+          <label for="topic">Tópico</label>
+          <ng-select
+            id="topic"
+            [items]="topics"
+            bindLabel="description"
+            class="NgSelect"
+            formControlName="topic"
+            [searchable]="true"
+          >
+          </ng-select>
+          <app-form-field-error
+            [form-control]="$any(resourceForm).controls.topic"
+          ></app-form-field-error>
+        </div>
+
+        <div class="col-md-5">
+          <label for="template">Template</label>
+          <ng-select
+            id="template"
+            [items]="templates"
+            bindLabel="title"
+            class="NgSelect"
+            formControlName="template"
+            [searchable]="true"
+          >
+          </ng-select>
+          <app-form-field-error
+            [form-control]="$any(resourceForm).controls.template"
+          ></app-form-field-error>
+        </div>
+        <div class="col-md-2 abnt">
+          <label for="abnt">Aplicar regras da ABNT</label>
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="abnt"
+            formControlName="abnt"
+          />
+          <app-form-field-error
+            [form-control]="$any(resourceForm).controls.template"
+          ></app-form-field-error>
+        </div>
+      </div>
+      <div
+        *ngIf="hasQuestionChatGpt()"
+        class="alert alert-info question-chat"
+        role="alert"
+      >
+        O que é pedido ao chatGPT: {{ getQuestionChatGpt() }}
+      </div>
+      <div *ngIf="haveDescription()" class="row">
+        <div class="form-group col-md-12">
+          <label for="template">Descrição feita pelo chat GPT:</label>
+          <div id="description" class="content">
+            {{ getDescription() }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="button-save">
+      <button
+        [disabled]="submittingForm || resourceForm.invalid"
+        type="submit"
+        class="btn btn-primary btn-lg float-right mt-3"
+      >
+        <fa-icon [icon]="['fas', 'save']"></fa-icon> Salvar
+      </button>
+    </div>
+  </form>
+</div>

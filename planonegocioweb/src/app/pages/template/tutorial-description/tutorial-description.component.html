@@ -1,0 +1,59 @@
+<div class="row contente">
+  <div class="col-sm-6">
+    <p>
+      Como montar a descrição:
+      <button
+        type="button"
+        class="btn btn-info"
+        data-bs-toggle="modal"
+        data-bs-target="#tutorial"
+      >
+        <fa-icon [icon]="['fas', 'question']"></fa-icon> Tutorial
+      </button>
+    </p>
+    <div
+      class="modal fade"
+      id="tutorial"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Tutorial de como montar a descrição do template
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            É preciso montar a semântica da descrição levando em consideração o
+            tópico e definindo a flag :topic.
+            <div>
+              <p><strong>Exemplo 1: </strong></p>
+              <p>Faça uma receita de bolo de :topic</p>
+            </div>
+            <div>
+              <p><strong>Exemplo 2: </strong></p>
+              <p>Desenvolver uma petição sobre :topic</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Sair
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
