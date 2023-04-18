@@ -8,6 +8,12 @@
   justify-content: center;
 }
 
-.titulo {
-  color: #fff;
+.title {
+  color: #e0e5f8;
+  font-size: 22px;
+}
+
+.img {
+  width: 180px;
+  height: auto;
 }

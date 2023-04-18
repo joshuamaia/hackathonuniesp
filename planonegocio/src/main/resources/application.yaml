@@ -10,5 +10,15 @@ spring:
 #    hibernate:
 #      ddl-auto: update
 
+management:
+  endpoint:
+    health:
+      show-details: always
+  health:
+    db:
+      enabled: 'true'
+    defaults:
+      enabled: 'true'
+
 openai:
-  api-key: ${OPENAI_KEY}
+  api-key: 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

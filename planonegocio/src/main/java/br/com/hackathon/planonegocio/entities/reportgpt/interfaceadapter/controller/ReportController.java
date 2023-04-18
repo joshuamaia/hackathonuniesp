@@ -4,6 +4,7 @@ import static org.springframework.http.MediaType.APPLICATION_OCTET_STREAM;
 import static org.springframework.http.MediaType.APPLICATION_PDF;
 import static org.springframework.http.ResponseEntity.ok;
 
+import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -43,6 +44,8 @@ public class ReportController {
 		Map<String, Object> parameters = new LinkedHashMap<>();
 		parameters.put("topicId", topicId);
 		parameters.put("templateId", templateId);
+		File file = new File(getClass().getResource("/images/logofastreportgptjasper.svg").getFile());
+		parameters.put("LOGO_REPORT", file.getAbsolutePath());
 
 		byte[] relatorio = reportGPTGatewayReport.generateReportPdf(nameReport, parameters);
 		return ok().contentType(APPLICATION_PDF) //
@@ -60,6 +63,8 @@ public class ReportController {
 		Map<String, Object> parameters = new LinkedHashMap<>();
 		parameters.put("topicId", topicId);
 		parameters.put("templateId", templateId);
+		File file = new File(getClass().getResource("/images/logofastreportgptjasper.svg").getFile());
+		parameters.put("LOGO_REPORT", file.getAbsolutePath());
 
 		byte[] relatorio = reportGPTGatewayReport.generateReportOdt(nameReport, parameters);
 		return ok().contentType(APPLICATION_OCTET_STREAM) //
