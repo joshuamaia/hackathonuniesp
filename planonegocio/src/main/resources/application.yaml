@@ -16,9 +16,9 @@ management:
       show-details: always
   health:
     db:
-      enabled: 'true'
+      enabled: "true"
     defaults:
-      enabled: 'true'
+      enabled: "true"
 
 openai:
-  api-key: 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
+  api-key: ${OPENAI_KEY}
