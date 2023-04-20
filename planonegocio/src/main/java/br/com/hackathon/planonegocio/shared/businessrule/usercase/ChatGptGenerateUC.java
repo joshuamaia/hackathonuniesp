@@ -21,7 +21,7 @@ public class ChatGptGenerateUC implements ChatGptGenerate {
         CompletionRequest completionRequest = CompletionRequest.builder()
                 .model("text-davinci-003")
                 .prompt(message)
-                .maxTokens(420)
+                .maxTokens(270)
                 .build();
 
         return openAiService.createCompletion(completionRequest).getChoices().get(0).getText();

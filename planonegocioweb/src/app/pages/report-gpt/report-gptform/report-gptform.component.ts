@@ -61,8 +61,19 @@ export class ReportGPTFormComponent
     if (topicControl && templateControl && topicControl.description) {
       const abntControl: boolean = this.resourceForm.controls['abnt'].value;
       const abntText = abntControl ? 'De acordo com as regras da ABNT ' : '';
+      const sumaryText = `Será solicitado Resumo das Ideias,
+      Oportunidades de Negócios,
+      Análise de Mercado,
+      Proposta de Valor,
+      Estratégia de Negócio,
+      Desenvolvimento do Produto,
+      Requisitos e Processos de Venda,
+      Diretrizes de Operações,
+      Finanças,
+      Plano de Marketing e Conclusão `;
       return (
         abntText +
+        sumaryText +
         templateControl.description?.replace(':topic', topicControl.description)
       );
     }
